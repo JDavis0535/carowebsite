@@ -2,7 +2,7 @@ backend:
   name: github
   repo: JDavis0535/carowebsite
   branch: main
-  base_url: https://symphonious-caramel-f04cc3.netlify.app
+  base_url: https://caroscarfs.netlify.app
   auth_endpoint: /.netlify/functions/auth
 
 # Where uploaded photos are saved in the repo, and how the site refers to them
