@@ -27,11 +27,16 @@ collections:
       - { name: name, label: "Name", widget: string }
       - { name: price, label: "Price ($)", widget: number, value_type: int, min: 0 }
       - { name: inStock, label: "In stock?", widget: boolean, default: true }
-      - { name: image, label: "Main photo", widget: image, choose_url: true }
+      - name: image
+        label: "Main photo — the scarf itself"
+        widget: image
+        choose_url: true
+        hint: "A clear photo of just the scarf. This is the cover image shown on the store tiles."
       - name: gallery
-        label: "Extra photos (gallery)"
+        label: "Extra photos — dogs wearing it"
         widget: list
         required: false
+        hint: "Photos of dogs modelling this scarf. Shown as a gallery on the scarf's own page."
         field: { name: image, label: "Photo", widget: image }
       - { name: color, label: "Colour", widget: string, required: false }
       - { name: material, label: "Material / fabric", widget: string, required: false }
