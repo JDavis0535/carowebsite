@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ScarfCard from "../components/ScarfCard.astro";
+import scarves from "../data/scarves.json";
+
+const available = scarves.filter((s) => s.inStock);
+const soldOut = scarves.filter((s) => !s.inStock);
+---
+
+<Layout title="Store — Barker & Bow" description="Browse our handmade dog scarves. Message us to order the one your dog loves.">
+  <section class="max-w-6xl mx-auto px-5 pt-14 pb-6 text-center">
+    <h1 class="font-display text-4xl sm:text-5xl font-semibold">The Collection</h1>
+    <p class="mt-4 text-ink-soft max-w-xl mx-auto">
+      Each scarf is one-of-a-kind and made by hand. See something you love?
+      Tap <span class="font-semibold text-terracotta">Message to order</span> and
+      we'll arrange it for you.
+    </p>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-5 py-10">
+    <h2 class="sr-only">Available scarves</h2>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {available.map((scarf) => <ScarfCard scarf={scarf} />)}
+    </div>
+
+    {soldOut.length > 0 && (
+      <div class="mt-16">
+        <h2 class="font-display text-2xl font-semibold text-ink-soft">Recently sold out</h2>
+        <p class="text-sm text-ink-soft mt-1">Loved these too? Message us about a restock or a custom make.</p>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 opacity-90">
+          {soldOut.map((scarf) => <ScarfCard scarf={scarf} />)}
+        </div>
+      </div>
+    )}
+  </section>
+</Layout>

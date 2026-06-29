@@ -1,0 +1,62 @@
+[
+  {
+    "id": "autumn-plaid",
+    "name": "Autumn Plaid",
+    "price": 22,
+    "inStock": true,
+    "image": "https://placedog.net/640/640?id=1",
+    "color": "Rust & Cream",
+    "material": "Brushed cotton flannel",
+    "description": "A cosy tartan in warm autumn tones — our most-loved everyday scarf for walks in the park."
+  },
+  {
+    "id": "sage-corduroy",
+    "name": "Sage Corduroy",
+    "price": 24,
+    "inStock": true,
+    "image": "https://placedog.net/641/640?id=2",
+    "color": "Sage Green",
+    "material": "Soft fine-wale corduroy",
+    "description": "Earthy and understated. The gentle ribbing adds texture without bulk — perfect for slimmer necks."
+  },
+  {
+    "id": "blush-floral",
+    "name": "Blush Floral",
+    "price": 26,
+    "inStock": true,
+    "image": "https://placedog.net/642/640?id=3",
+    "color": "Blush Pink",
+    "material": "Liberty-style cotton lawn",
+    "description": "Delicate ditsy florals on a soft blush ground. A spring favourite that photographs beautifully."
+  },
+  {
+    "id": "midnight-spot",
+    "name": "Midnight Spot",
+    "price": 23,
+    "inStock": false,
+    "image": "https://placedog.net/643/640?id=4",
+    "color": "Navy & White",
+    "material": "Crisp cotton poplin",
+    "description": "Classic polka dots in deep navy. Smart enough for special occasions. Currently sold out — message to pre-order."
+  },
+  {
+    "id": "ochre-stripe",
+    "name": "Ochre Stripe",
+    "price": 22,
+    "inStock": true,
+    "image": "https://placedog.net/644/640?id=5",
+    "color": "Ochre & Ecru",
+    "material": "Lightweight linen blend",
+    "description": "Sunny breton stripes in golden ochre. Light and breathable for warmer days."
+  },
+  {
+    "id": "forest-tartan",
+    "name": "Forest Tartan",
+    "price": 25,
+    "inStock": true,
+    "image": "https://placedog.net/645/640?id=6",
+    "color": "Forest Green",
+    "material": "Brushed cotton flannel",
+    "description": "A rich woodland check with a soft brushed finish. Made for crisp morning adventures."
+  }
+]
