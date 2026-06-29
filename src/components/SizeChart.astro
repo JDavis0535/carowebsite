@@ -1,0 +1,61 @@
+---
+// A clickable "size chart" link that opens a modal table.
+const rows = [
+  { neck: '7–10"', breeds: "Cats, Maltese, Chihuahua, Min Pin, Chinese Crested", size: "Small" },
+  { neck: '11–14"', breeds: "Fox Terrier, Pug, Dachshund, Cocker Spaniel, Whippet", size: "Medium" },
+  { neck: '15–18"', breeds: "GSP, Vizsla, Weimaraner, Boxer, Doberman, Cattle Dog, Dalmatian", size: "Large" },
+  { neck: '19–22"', breeds: "Ridgeback, Golden Retriever, Husky, Wheaten Terrier, Standard Poodle", size: "X-Large" },
+  { neck: '23–27"', breeds: "Humans, Bernese Mountain Dog, Wolfhound, Great Dane, Large Shepherds", size: "XX-Large / Human" },
+];
+---
+
+<dialog
+  id="size-chart"
+  class="m-auto w-[92vw] max-w-xl rounded-2xl bg-cream p-0 shadow-2xl backdrop:bg-ink/60"
+>
+  <div class="flex items-center justify-between border-b border-cream-deep px-5 py-3">
+    <h2 class="font-display text-xl font-semibold">Size Chart</h2>
+    <button type="button" data-close-size-chart aria-label="Close" class="text-2xl leading-none text-ink-soft hover:text-ink">×</button>
+  </div>
+
+  <div class="p-5">
+    <div class="rounded-xl bg-ink p-4 text-cream sm:p-5">
+      <h3 class="text-center font-display text-2xl font-bold uppercase tracking-tight text-terracotta sm:text-3xl">
+        Dog Size Chart
+      </h3>
+      <table class="mt-4 w-full border-collapse text-sm">
+        <thead>
+          <tr class="text-terracotta">
+            <th class="border border-terracotta/40 px-2 py-2 text-left font-semibold">Neck Size</th>
+            <th class="border border-terracotta/40 px-2 py-2 text-left font-semibold">Breed Examples</th>
+            <th class="border border-terracotta/40 px-2 py-2 text-left font-semibold">Scarf Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr>
+              <td class="border border-terracotta/40 px-2 py-2 font-semibold whitespace-nowrap">{r.neck}</td>
+              <td class="border border-terracotta/40 px-2 py-2 text-cream/90">{r.breeds}</td>
+              <td class="border border-terracotta/40 px-2 py-2">{r.size}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="mt-4 text-center text-xs text-cream/70">
+        Between sizes? Size up — especially for fluffy or long-haired breeds.
+      </p>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dlg = document.getElementById("size-chart") as HTMLDialogElement | null;
+  document
+    .querySelectorAll("[data-open-size-chart]")
+    .forEach((btn) => btn.addEventListener("click", () => dlg?.showModal()));
+  dlg?.querySelector("[data-close-size-chart]")?.addEventListener("click", () => dlg.close());
+  // Close when clicking the dark backdrop outside the modal
+  dlg?.addEventListener("click", (e) => {
+    if (e.target === dlg) dlg.close();
+  });
+</script>

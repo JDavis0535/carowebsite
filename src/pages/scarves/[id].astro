@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import ScarfCard from "../../components/ScarfCard.astro";
 import Accordion from "../../components/Accordion.astro";
+import SizeChart from "../../components/SizeChart.astro";
 import { scarves } from "../../lib/scarves";
 
 export function getStaticPaths() {
@@ -110,6 +111,15 @@ const returnPolicy =
               <li><span class="font-semibold text-ink">{i + 1}.</span> {step}</li>
             ))}
           </ol>
+          <p class="pt-1">
+            <button
+              type="button"
+              data-open-size-chart
+              class="inline-flex items-center gap-1.5 font-semibold text-terracotta underline underline-offset-2 hover:text-terracotta-dark"
+            >
+              📏 View size chart
+            </button>
+          </p>
         </Accordion>
 
         <Accordion title="Return Policy">
@@ -129,6 +139,8 @@ const returnPolicy =
       </div>
     </section>
   )}
+
+  <SizeChart />
 </Layout>
 
 <script>
