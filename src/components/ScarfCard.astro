@@ -31,10 +31,7 @@ const href = `/scarves/${scarf.id}`;
   </div>
 
   <div class="flex flex-1 flex-col p-5">
-    <div class="flex items-baseline justify-between gap-3">
-      <h3 class="font-display text-xl font-semibold">{scarf.name}</h3>
-      <span class="font-semibold text-terracotta">${scarf.price}</span>
-    </div>
+    <h3 class="font-display text-xl font-semibold">{scarf.name}</h3>
     {scarf.color && (
       <p class="mt-1 text-sm text-ink-soft">{scarf.color}</p>
     )}
