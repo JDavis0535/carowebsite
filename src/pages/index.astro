@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ScarfCard from "../components/ScarfCard.astro";
-import scarves from "../data/scarves.json";
+import { scarves } from "../lib/scarves";
 
 const featured = scarves.filter((s) => s.inStock).slice(0, 3);
 ---
