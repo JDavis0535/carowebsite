@@ -18,6 +18,7 @@ import Layout from "../layouts/Layout.astro";
       method="POST"
       data-netlify="true"
       netlify-honeypot="bot-field"
+      enctype="multipart/form-data"
       class="md:col-span-3 rounded-2xl bg-white p-6 sm:p-8 ring-1 ring-cream-deep space-y-5"
     >
       <input type="hidden" name="form-name" value="scarf-inquiry" />
@@ -48,6 +49,15 @@ import Layout from "../layouts/Layout.astro";
         <textarea id="message" name="message" rows="4" required
           placeholder="Tell us about your dog and what you're after…"
           class="w-full rounded-lg border border-cream-deep bg-cream px-4 py-2.5 outline-none focus:border-terracotta focus:ring-2 focus:ring-terracotta/30"></textarea>
+      </div>
+
+      <div>
+        <label for="dog-photo" class="block text-sm font-semibold mb-1.5">
+          Photo of your dog <span class="font-normal text-ink-soft">(optional)</span>
+        </label>
+        <input id="dog-photo" name="dog-photo" type="file" accept="image/*"
+          class="w-full text-sm text-ink-soft rounded-lg border border-cream-deep bg-cream px-3 py-2.5 outline-none focus:border-terracotta focus:ring-2 focus:ring-terracotta/30 file:mr-4 file:rounded-full file:border-0 file:bg-blush file:px-4 file:py-2 file:text-sm file:font-semibold file:text-terracotta-dark hover:file:bg-cream-deep file:cursor-pointer" />
+        <p class="mt-1.5 text-xs text-ink-soft">Helps us picture the perfect scarf. Max ~10&nbsp;MB.</p>
       </div>
 
       <button type="submit"
