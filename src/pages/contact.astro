@@ -45,6 +45,14 @@ import Layout from "../layouts/Layout.astro";
       </div>
 
       <div>
+        <label for="neck-size" class="block text-sm font-semibold mb-1.5">
+          Dog's neck size <span class="font-normal text-ink-soft">(optional)</span>
+        </label>
+        <input id="neck-size" name="neck-size" type="text" placeholder="e.g. 14 in / 35 cm — or your dog's breed"
+          class="w-full rounded-lg border border-cream-deep bg-cream px-4 py-2.5 outline-none focus:border-terracotta focus:ring-2 focus:ring-terracotta/30" />
+      </div>
+
+      <div>
         <label for="message" class="block text-sm font-semibold mb-1.5">Message</label>
         <textarea id="message" name="message" rows="4" required
           placeholder="Tell us about your dog and what you're after…"
@@ -57,7 +65,7 @@ import Layout from "../layouts/Layout.astro";
         </label>
         <input id="dog-photo" name="dog-photo" type="file" accept="image/*"
           class="w-full text-sm text-ink-soft rounded-lg border border-cream-deep bg-cream px-3 py-2.5 outline-none focus:border-terracotta focus:ring-2 focus:ring-terracotta/30 file:mr-4 file:rounded-full file:border-0 file:bg-blush file:px-4 file:py-2 file:text-sm file:font-semibold file:text-terracotta-dark hover:file:bg-cream-deep file:cursor-pointer" />
-        <p class="mt-1.5 text-xs text-ink-soft">Helps us picture the perfect scarf. Max ~10&nbsp;MB.</p>
+        <p class="mt-1.5 text-xs text-ink-soft">Send a photo of your pup and we'll suggest the perfect scarf! Max ~10&nbsp;MB.</p>
       </div>
 
       <button type="submit"
