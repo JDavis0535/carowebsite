@@ -1,0 +1,133 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ScarfCard from "../../components/ScarfCard.astro";
+import { scarves } from "../../lib/scarves";
+
+export function getStaticPaths() {
+  return scarves.map((scarf) => ({
+    params: { id: scarf.id },
+    props: { scarf },
+  }));
+}
+
+const { scarf } = Astro.props;
+
+// Main photo first, then any gallery extras
+const images = [scarf.image, ...(scarf.gallery ?? [])].filter(Boolean);
+
+const inquireHref = `/contact?scarf=${encodeURIComponent(scarf.name)}`;
+
+// A few other scarves to suggest
+const related = scarves.filter((s) => s.id !== scarf.id).slice(0, 3);
+---
+
+<Layout
+  title={`${scarf.name} — Barker & Bow`}
+  description={scarf.description ?? `${scarf.name} — a handmade dog scarf.`}
+  image={scarf.image}
+>
+  <section class="max-w-6xl mx-auto px-5 pt-8 pb-4">
+    <a href="/store" class="inline-flex items-center gap-1 text-sm font-medium text-ink-soft hover:text-terracotta">
+      ← Back to the collection
+    </a>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-5 pb-12 grid lg:grid-cols-2 gap-10 lg:gap-14">
+    <!-- Gallery -->
+    <div>
+      <div class="aspect-square overflow-hidden rounded-2xl bg-cream-deep ring-1 ring-cream-deep">
+        <img id="main-image" src={images[0]} alt={`${scarf.name} dog scarf`} class="h-full w-full object-cover" />
+      </div>
+
+      {images.length > 1 && (
+        <div class="mt-4 grid grid-cols-5 gap-3">
+          {images.map((src, i) => (
+            <button
+              type="button"
+              data-thumb={src}
+              class:list={[
+                "aspect-square overflow-hidden rounded-lg bg-cream-deep ring-2 transition",
+                i === 0 ? "ring-terracotta" : "ring-transparent hover:ring-blush",
+              ]}
+              aria-label={`View photo ${i + 1}`}
+            >
+              <img src={src} alt="" class="h-full w-full object-cover" />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <!-- Details -->
+    <div>
+      {scarf.inStock ? (
+        <span class="inline-block rounded-full bg-sage/15 px-3 py-1 text-xs font-semibold text-sage">In stock</span>
+      ) : (
+        <span class="inline-block rounded-full bg-ink/10 px-3 py-1 text-xs font-semibold text-ink-soft">Sold out</span>
+      )}
+
+      <h1 class="mt-4 font-display text-4xl sm:text-5xl font-semibold tracking-tight">{scarf.name}</h1>
+      <p class="mt-3 text-2xl font-semibold text-terracotta">${scarf.price}</p>
+
+      {scarf.description && (
+        <p class="mt-6 text-ink-soft leading-relaxed">{scarf.description}</p>
+      )}
+
+      <dl class="mt-8 divide-y divide-cream-deep border-y border-cream-deep">
+        {scarf.color && (
+          <div class="flex justify-between gap-4 py-3">
+            <dt class="text-sm font-semibold text-ink-soft">Colour</dt>
+            <dd class="text-sm text-ink">{scarf.color}</dd>
+          </div>
+        )}
+        {scarf.material && (
+          <div class="flex justify-between gap-4 py-3">
+            <dt class="text-sm font-semibold text-ink-soft">Material</dt>
+            <dd class="text-sm text-ink">{scarf.material}</dd>
+          </div>
+        )}
+        <div class="flex justify-between gap-4 py-3">
+          <dt class="text-sm font-semibold text-ink-soft">Handmade</dt>
+          <dd class="text-sm text-ink">Yes — one of a kind</dd>
+        </div>
+      </dl>
+
+      <a
+        href={inquireHref}
+        class="mt-8 inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-terracotta px-8 py-3.5 font-semibold text-cream hover:bg-terracotta-dark transition-colors"
+      >
+        {scarf.inStock ? "Message to order" : "Ask about a restock"}
+      </a>
+      <p class="mt-3 text-sm text-ink-soft">
+        Tell us your dog's neck size and we'll confirm availability and how to pay.
+      </p>
+    </div>
+  </section>
+
+  <!-- Related -->
+  {related.length > 0 && (
+    <section class="max-w-6xl mx-auto px-5 py-12 border-t border-cream-deep">
+      <h2 class="font-display text-2xl sm:text-3xl font-semibold">You might also like</h2>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {related.map((s) => <ScarfCard scarf={s} />)}
+      </div>
+    </section>
+  )}
+</Layout>
+
+<script>
+  const main = document.getElementById("main-image") as HTMLImageElement | null;
+  const thumbs = document.querySelectorAll<HTMLButtonElement>("[data-thumb]");
+  thumbs.forEach((thumb) => {
+    thumb.addEventListener("click", () => {
+      const src = thumb.getAttribute("data-thumb");
+      if (main && src) main.src = src;
+      thumbs.forEach((t) => {
+        t.classList.remove("ring-terracotta");
+        t.classList.add("ring-transparent");
+      });
+      thumb.classList.remove("ring-transparent");
+      thumb.classList.add("ring-terracotta");
+    });
+  });
+</script>

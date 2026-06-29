@@ -27,7 +27,12 @@ collections:
       - { name: name, label: "Name", widget: string }
       - { name: price, label: "Price ($)", widget: number, value_type: int, min: 0 }
       - { name: inStock, label: "In stock?", widget: boolean, default: true }
-      - { name: image, label: "Photo", widget: image, choose_url: true }
+      - { name: image, label: "Main photo", widget: image, choose_url: true }
+      - name: gallery
+        label: "Extra photos (gallery)"
+        widget: list
+        required: false
+        field: { name: image, label: "Photo", widget: image }
       - { name: color, label: "Colour", widget: string, required: false }
       - { name: material, label: "Material / fabric", widget: string, required: false }
       - { name: description, label: "Description", widget: text, required: false }

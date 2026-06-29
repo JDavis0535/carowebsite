@@ -3,6 +3,11 @@
   "price": 22,
   "inStock": true,
   "image": "https://placedog.net/640/640?id=1",
+  "gallery": [
+    "https://placedog.net/641/641?id=21",
+    "https://placedog.net/642/642?id=22",
+    "https://placedog.net/643/643?id=23"
+  ],
   "color": "Rust & Cream",
   "material": "Brushed cotton flannel",
   "description": "A cosy tartan in warm autumn tones — our most-loved everyday scarf for walks in the park."

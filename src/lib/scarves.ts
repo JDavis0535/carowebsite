@@ -8,6 +8,7 @@ export interface Scarf {
   price: number;
   inStock: boolean;
   image: string;
+  gallery?: string[];
   color?: string;
   material?: string;
   description?: string;
