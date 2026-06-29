@@ -22,10 +22,10 @@ collections:
     format: json
     slug: "{{slug}}"
     identifier_field: name
-    summary: "{{name}} — £{{price}}"
+    summary: "{{name}} — ${{price}}"
     fields:
       - { name: name, label: "Name", widget: string }
-      - { name: price, label: "Price (£)", widget: number, value_type: int, min: 0 }
+      - { name: price, label: "Price ($)", widget: number, value_type: int, min: 0 }
       - { name: inStock, label: "In stock?", widget: boolean, default: true }
       - { name: image, label: "Photo", widget: image, choose_url: true }
       - { name: color, label: "Colour", widget: string, required: false }

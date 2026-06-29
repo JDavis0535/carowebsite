@@ -37,7 +37,7 @@ const inquireHref = `/contact?scarf=${encodeURIComponent(scarf.name)}`;
   <div class="flex flex-1 flex-col p-5">
     <div class="flex items-baseline justify-between gap-3">
       <h3 class="font-display text-xl font-semibold">{scarf.name}</h3>
-      <span class="font-semibold text-terracotta">£{scarf.price}</span>
+      <span class="font-semibold text-terracotta">${scarf.price}</span>
     </div>
     {scarf.color && (
       <p class="mt-1 text-sm text-ink-soft">{scarf.color} · {scarf.material}</p>
