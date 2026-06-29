@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import ScarfCard from "../../components/ScarfCard.astro";
+import Accordion from "../../components/Accordion.astro";
 import { scarves } from "../../lib/scarves";
 
 export function getStaticPaths() {
@@ -19,6 +20,15 @@ const inquireHref = `/contact?scarf=${encodeURIComponent(scarf.name)}`;
 
 // A few other scarves to suggest
 const related = scarves.filter((s) => s.id !== scarf.id).slice(0, 3);
+
+// Shared content (same for every scarf)
+const sizingSteps = [
+  "Measure the thickest part of your dog's neck (or head) with a soft tape measure.",
+  "Account for fluff — if your pup is between sizes, size up. Long-haired breeds (shepherds, goldens) almost always need to size up.",
+  "Not sure? Message us with your dog's breed and measurement and we'll recommend the perfect fit.",
+];
+const returnPolicy =
+  "Sometimes it's just not the right fit. Unused items can be returned for a refund within 30 days — customers cover return shipping. Custom and final-sale items are non-returnable.";
 ---
 
 <Layout
@@ -34,7 +44,7 @@ const related = scarves.filter((s) => s.id !== scarf.id).slice(0, 3);
 
   <section class="max-w-6xl mx-auto px-5 pb-12 grid lg:grid-cols-2 gap-10 lg:gap-14">
     <!-- Gallery -->
-    <div>
+    <div class="lg:sticky lg:top-24 lg:self-start">
       <div class="aspect-square overflow-hidden rounded-2xl bg-cream-deep ring-1 ring-cream-deep">
         <img id="main-image" src={images[0]} alt={`${scarf.name} dog scarf`} class="h-full w-full object-cover" />
       </div>
@@ -68,39 +78,45 @@ const related = scarves.filter((s) => s.id !== scarf.id).slice(0, 3);
 
       <h1 class="mt-4 font-display text-4xl sm:text-5xl font-semibold tracking-tight">{scarf.name}</h1>
       <p class="mt-3 text-2xl font-semibold text-terracotta">${scarf.price}</p>
-
-      {scarf.description && (
-        <p class="mt-6 text-ink-soft leading-relaxed">{scarf.description}</p>
-      )}
-
-      <dl class="mt-8 divide-y divide-cream-deep border-y border-cream-deep">
-        {scarf.color && (
-          <div class="flex justify-between gap-4 py-3">
-            <dt class="text-sm font-semibold text-ink-soft">Colour</dt>
-            <dd class="text-sm text-ink">{scarf.color}</dd>
-          </div>
-        )}
-        {scarf.material && (
-          <div class="flex justify-between gap-4 py-3">
-            <dt class="text-sm font-semibold text-ink-soft">Material</dt>
-            <dd class="text-sm text-ink">{scarf.material}</dd>
-          </div>
-        )}
-        <div class="flex justify-between gap-4 py-3">
-          <dt class="text-sm font-semibold text-ink-soft">Handmade</dt>
-          <dd class="text-sm text-ink">Yes — one of a kind</dd>
-        </div>
-      </dl>
+      {scarf.color && <p class="mt-2 text-sm text-ink-soft">{scarf.color} · Handmade, one of a kind</p>}
 
       <a
         href={inquireHref}
-        class="mt-8 inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-terracotta px-8 py-3.5 font-semibold text-cream hover:bg-terracotta-dark transition-colors"
+        class="mt-7 inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-terracotta px-8 py-3.5 font-semibold text-cream hover:bg-terracotta-dark transition-colors"
       >
         {scarf.inStock ? "Message to order" : "Ask about a restock"}
       </a>
       <p class="mt-3 text-sm text-ink-soft">
         Tell us your dog's neck size and we'll confirm availability and how to pay.
       </p>
+
+      <!-- Info sections -->
+      <div class="mt-9">
+        <Accordion title="Description" open={true}>
+          {scarf.description
+            ? <p>{scarf.description}</p>
+            : <p>A handmade dog scarf, sewn with care in small batches.</p>}
+        </Accordion>
+
+        <Accordion title="Materials">
+          {scarf.material
+            ? <p class="whitespace-pre-line">{scarf.material}</p>
+            : <p>Premium, pup-friendly fabric. Message us for full fabric details.</p>}
+        </Accordion>
+
+        <Accordion title="How to Size">
+          <ol class="space-y-2">
+            {sizingSteps.map((step, i) => (
+              <li><span class="font-semibold text-ink">{i + 1}.</span> {step}</li>
+            ))}
+          </ol>
+        </Accordion>
+
+        <Accordion title="Return Policy">
+          <p>{returnPolicy}</p>
+        </Accordion>
+        <div class="border-t border-cream-deep"></div>
+      </div>
     </div>
   </section>
 

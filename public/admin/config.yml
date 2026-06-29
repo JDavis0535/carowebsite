@@ -39,5 +39,9 @@ collections:
         hint: "Photos of dogs modelling this scarf. Shown as a gallery on the scarf's own page."
         field: { name: image, label: "Photo", widget: image }
       - { name: color, label: "Colour", widget: string, required: false }
-      - { name: material, label: "Material / fabric", widget: string, required: false }
+      - name: material
+        label: "Materials"
+        widget: text
+        required: false
+        hint: "Fabric details — put each on its own line if you like (e.g. Flannel: 65% polyester, 35% cotton)."
       - { name: description, label: "Description", widget: text, required: false }

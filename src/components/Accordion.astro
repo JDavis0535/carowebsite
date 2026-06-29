@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  open?: boolean;
+}
+const { title, open = false } = Astro.props;
+---
+
+<details class="group border-t border-cream-deep" open={open}>
+  <summary
+    class="flex cursor-pointer select-none items-center justify-between gap-3 py-4 list-none [&::-webkit-details-marker]:hidden"
+  >
+    <span class="flex items-center gap-2.5">
+      <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 shrink-0 text-sage" aria-hidden="true">
+        <ellipse cx="7" cy="8.5" rx="1.9" ry="2.4" />
+        <ellipse cx="11.2" cy="6.2" rx="1.9" ry="2.6" />
+        <ellipse cx="15.4" cy="6.2" rx="1.9" ry="2.6" />
+        <ellipse cx="18.4" cy="9.2" rx="1.9" ry="2.4" />
+        <path d="M12 10.4c-2.8 0-5 2-5 4.5 0 2 1.8 3.2 5 3.2s5-1.2 5-3.2c0-2.5-2.2-4.5-5-4.5z" />
+      </svg>
+      <span class="font-display text-lg font-semibold text-ink">{title}</span>
+    </span>
+    <span class="text-2xl leading-none text-ink-soft transition-transform duration-200 group-open:rotate-45">+</span>
+  </summary>
+  <div class="space-y-3 pb-5 pl-7 text-ink-soft leading-relaxed">
+    <slot />
+  </div>
+</details>
