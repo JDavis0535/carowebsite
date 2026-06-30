@@ -1,12 +1,16 @@
 ---
 // A clickable "size chart" link that opens a modal table.
-const rows = [
-  { neck: '7–10"', breeds: "Cats, Maltese, Chihuahua, Min Pin, Chinese Crested", size: "Small" },
-  { neck: '11–14"', breeds: "Fox Terrier, Pug, Dachshund, Cocker Spaniel, Whippet", size: "Medium" },
-  { neck: '15–18"', breeds: "GSP, Vizsla, Weimaraner, Boxer, Doberman, Cattle Dog, Dalmatian", size: "Large" },
-  { neck: '19–22"', breeds: "Ridgeback, Golden Retriever, Husky, Wheaten Terrier, Standard Poodle", size: "X-Large" },
-  { neck: '23–27"', breeds: "Humans, Bernese Mountain Dog, Wolfhound, Great Dane, Large Shepherds", size: "XX-Large / Human" },
-];
+import { SIZES } from "../lib/sizes";
+
+const breeds: Record<string, string> = {
+  small: "Cats, Maltese, Chihuahua, Min Pin, Chinese Crested",
+  medium: "Fox Terrier, Pug, Dachshund, Cocker Spaniel, Whippet",
+  large: "GSP, Vizsla, Weimaraner, Boxer, Doberman, Cattle Dog, Dalmatian",
+  "x-large": "Ridgeback, Golden Retriever, Husky, Wheaten Terrier, Standard Poodle",
+  "xx-large": "Humans, Bernese Mountain Dog, Wolfhound, Great Dane, Large Shepherds",
+};
+
+const rows = SIZES.map((s) => ({ neck: s.neck, breeds: breeds[s.id] ?? "", size: s.label }));
 ---
 
 <dialog

@@ -4,6 +4,7 @@ import ScarfCard from "../../components/ScarfCard.astro";
 import Accordion from "../../components/Accordion.astro";
 import SizeChart from "../../components/SizeChart.astro";
 import { scarves } from "../../lib/scarves";
+import { SIZES } from "../../lib/sizes";
 
 export function getStaticPaths() {
   return scarves.map((scarf) => ({
@@ -79,16 +80,36 @@ const returnPolicy =
 
       <h1 class="mt-4 font-display text-4xl sm:text-5xl font-semibold tracking-tight">{scarf.name}</h1>
       <p class="mt-3 text-2xl font-semibold text-terracotta">${scarf.price}</p>
-      {scarf.color && <p class="mt-2 text-sm text-ink-soft">{scarf.color} · Handmade, one of a kind</p>}
+      {scarf.color && <p class="mt-2 text-sm text-ink-soft">{scarf.color} · Handmade</p>}
+
+      <!-- Size selector -->
+      <div class="mt-6">
+        <div class="flex items-center justify-between gap-3">
+          <label for="size-select" class="block text-sm font-semibold">Choose a size</label>
+          <button type="button" data-open-size-chart class="text-sm font-medium text-terracotta underline underline-offset-2 hover:text-terracotta-dark">
+            📏 Size chart
+          </button>
+        </div>
+        <select
+          id="size-select"
+          class="mt-1.5 w-full rounded-lg border border-cream-deep bg-cream px-4 py-2.5 text-ink outline-none focus:border-terracotta focus:ring-2 focus:ring-terracotta/30"
+        >
+          {SIZES.map((s) => (
+            <option value={`${s.label} (${s.neck})`}>{s.label} ({s.neck}) — ${scarf.price}</option>
+          ))}
+        </select>
+      </div>
 
       <a
+        id="order-btn"
         href={inquireHref}
-        class="mt-7 inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-terracotta px-8 py-3.5 font-semibold text-cream hover:bg-terracotta-dark transition-colors"
+        data-scarf={scarf.name}
+        class="mt-6 inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-terracotta px-8 py-3.5 font-semibold text-cream hover:bg-terracotta-dark transition-colors"
       >
         {scarf.inStock ? "Message to order" : "Ask about a restock"}
       </a>
       <p class="mt-3 text-sm text-ink-soft">
-        Tell us your dog's neck size and we'll confirm availability and how to pay.
+        Pick your dog's size and message us — we'll confirm availability and how to pay.
       </p>
 
       <!-- Info sections -->
@@ -144,6 +165,19 @@ const returnPolicy =
 </Layout>
 
 <script>
+  // Carry the chosen size into the inquiry link
+  const sizeSelect = document.getElementById("size-select") as HTMLSelectElement | null;
+  const orderBtn = document.getElementById("order-btn") as HTMLAnchorElement | null;
+  function syncOrderLink() {
+    if (!orderBtn) return;
+    const name = orderBtn.dataset.scarf ?? "";
+    const size = sizeSelect?.value ?? "";
+    const label = size ? `${name} — ${size}` : name;
+    orderBtn.href = `/contact?scarf=${encodeURIComponent(label)}`;
+  }
+  sizeSelect?.addEventListener("change", syncOrderLink);
+  syncOrderLink();
+
   const main = document.getElementById("main-image") as HTMLImageElement | null;
   const thumbs = document.querySelectorAll<HTMLButtonElement>("[data-thumb]");
   thumbs.forEach((thumb) => {
