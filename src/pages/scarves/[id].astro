@@ -100,16 +100,8 @@ const returnPolicy =
         </select>
       </div>
 
-      <a
-        id="order-btn"
-        href={inquireHref}
-        data-scarf={scarf.name}
-        class="mt-6 inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-terracotta px-8 py-3.5 font-semibold text-cream hover:bg-terracotta-dark transition-colors"
-      >
-        {scarf.inStock ? "Message to order" : "Ask about a restock"}
-      </a>
-      <p class="mt-3 text-sm text-ink-soft">
-        Pick your dog's size and message us — we'll confirm availability and how to pay.
+      <p class="mt-4 text-sm text-ink-soft">
+        Pick your dog's size, then <a id="order-btn" href={inquireHref} data-scarf={scarf.name} class="font-semibold text-terracotta underline underline-offset-2 hover:text-terracotta-dark">message us</a> — we'll confirm availability and how to pay.
       </p>
 
       <!-- Info sections -->
