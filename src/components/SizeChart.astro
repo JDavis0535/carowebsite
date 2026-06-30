@@ -7,7 +7,7 @@ const breeds: Record<string, string> = {
   medium: "Fox Terrier, Pug, Dachshund, Cocker Spaniel, Whippet",
   large: "GSP, Vizsla, Weimaraner, Boxer, Doberman, Cattle Dog, Dalmatian",
   "x-large": "Ridgeback, Golden Retriever, Husky, Wheaten Terrier, Standard Poodle",
-  "xx-large": "Humans, Bernese Mountain Dog, Wolfhound, Great Dane, Large Shepherds",
+  "xx-large": "Bernese Mountain Dog, Wolfhound, Great Dane, Large Shepherds",
 };
 
 const rows = SIZES.map((s) => ({ neck: s.neck, breeds: breeds[s.id] ?? "", size: s.label }));
