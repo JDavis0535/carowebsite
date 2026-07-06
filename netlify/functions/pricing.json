@@ -1,0 +1,32 @@
+{
+  "autumn-plaid": {
+    "name": "Autumn Plaid",
+    "price": 22,
+    "image": "https://placedog.net/640/640?id=1"
+  },
+  "blush-floral": {
+    "name": "Blush Floral",
+    "price": 26,
+    "image": "https://placedog.net/642/640?id=3"
+  },
+  "forest-tartan": {
+    "name": "Forest Tartan",
+    "price": 25,
+    "image": "https://placedog.net/645/640?id=6"
+  },
+  "midnight-spot": {
+    "name": "Midnight Spot",
+    "price": 23,
+    "image": "https://placedog.net/643/640?id=4"
+  },
+  "ochre-stripe": {
+    "name": "Ochre Stripe",
+    "price": 22,
+    "image": "https://placedog.net/644/640?id=5"
+  },
+  "sage-corduroy": {
+    "name": "Sage Corduroy",
+    "price": 24,
+    "image": "https://placedog.net/641/640?id=2"
+  }
+}

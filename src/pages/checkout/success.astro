@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Thank you — Barker & Bow" description="Your order was received.">
+  <section class="max-w-xl mx-auto px-5 py-24 text-center">
+    <div class="text-5xl">🎉</div>
+    <h1 class="mt-5 font-display text-4xl sm:text-5xl font-semibold">Thank you!</h1>
+    <p class="mt-5 text-ink-soft leading-relaxed">
+      Your order is on its way to us. You'll get an email confirmation shortly, and
+      we'll get your scarf ready. Questions? Just reply to that email or message us
+      any time.
+    </p>
+    <a href="/store" class="mt-8 inline-flex items-center rounded-full bg-terracotta px-7 py-3 font-semibold text-cream hover:bg-terracotta-dark transition-colors">
+      Back to the shop
+    </a>
+  </section>
+</Layout>
+
+<script>
+  // Order placed — empty the cart.
+  try { localStorage.removeItem("bb-cart"); } catch {}
+</script>
