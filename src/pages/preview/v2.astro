@@ -1,0 +1,126 @@
+---
+import "../../styles/global.css";
+// DRAFT homepage direction B — "Bold & Playful". Not linked in nav.
+const featured = [
+  { name: "Autumn Plaid", img: "https://placedog.net/600/600?id=1", bg: "#f0d9c8" },
+  { name: "Blush Floral", img: "https://placedog.net/600/600?id=3", bg: "#e7e0f0" },
+  { name: "Forest Tartan", img: "https://placedog.net/600/600?id=6", bg: "#dce6d5" },
+];
+const steps = [
+  { t: "Pick a design", c: "#d9603f" },
+  { t: "Choose the size", c: "#7c8b6f" },
+  { t: "We make + ship it", c: "#e0a43b" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Draft B — Barker &amp; Bow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      body { font-family: "Inter", sans-serif; color: #241f1b; background: #fbf7f0; margin: 0; }
+      .display { font-family: "Bricolage Grotesque", sans-serif; letter-spacing: -0.02em; }
+    </style>
+  </head>
+  <body>
+    <!-- Announcement bar -->
+    <div style="background:#241f1b;color:#fbf7f0" class="text-center text-sm font-semibold py-2 px-4">
+      🐾 Free shipping on 2+ scarves — handmade just for your pup
+    </div>
+
+    <!-- Header -->
+    <header>
+      <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+        <span class="display text-2xl font-extrabold">Barker &amp; Bow</span>
+        <nav class="hidden sm:flex gap-7 text-sm font-semibold">
+          <span>Shop</span><span>About</span><span>Sizing</span><span>Contact</span>
+        </nav>
+        <span class="rounded-full px-5 py-2 text-sm font-bold" style="background:#d9603f;color:#fff">Shop scarves</span>
+      </div>
+    </header>
+
+    <!-- Hero color block -->
+    <section class="max-w-6xl mx-auto px-5 pt-6">
+      <div class="rounded-[2.5rem] px-6 sm:px-14 pt-14 pb-0 overflow-hidden" style="background:#d9603f;color:#fbf7f0">
+        <div class="grid lg:grid-cols-2 gap-8 items-end">
+          <div class="pb-14">
+            <span class="inline-block rounded-full px-4 py-1.5 text-sm font-bold" style="background:#fbf7f0;color:#d9603f">Handmade dog scarves</span>
+            <h1 class="display mt-5 font-extrabold leading-[0.92]" style="font-size:74px">Scarves your dog will actually strut in.</h1>
+            <p class="mt-6 text-lg font-medium max-w-md" style="color:#fbf7f0dd">Small-batch, hand-sewn, and made in five sizes. Big personality for dogs of every size.</p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <span class="rounded-full px-7 py-4 font-bold" style="background:#fbf7f0;color:#d9603f">Shop the collection</span>
+              <span class="rounded-full px-7 py-4 font-bold" style="border:2px solid #fbf7f0aa;color:#fbf7f0">See sizing</span>
+            </div>
+          </div>
+          <div class="rounded-t-[2rem] overflow-hidden self-end" style="aspect-ratio:1;background:#00000015">
+            <img src="https://placedog.net/720/720?id=11" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust strip -->
+    <section class="max-w-6xl mx-auto px-5 py-8">
+      <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-2 text-sm font-bold" style="color:#5b5247">
+        <span style="color:#e0a43b">★★★★★</span>
+        <span>500+ happy dogs</span><span>·</span><span>100% handmade</span><span>·</span><span>5 sizes</span><span>·</span><span>Premium fabrics</span>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="max-w-6xl mx-auto px-5 py-10">
+      <h2 class="display text-5xl font-extrabold text-center">Three steps to strut</h2>
+      <div class="mt-10 grid sm:grid-cols-3 gap-5">
+        {steps.map((s, i) => (
+          <div class="rounded-3xl p-8 text-center" style={`background:${s.c};color:#fbf7f0`}>
+            <div class="display text-6xl font-extrabold">{i + 1}</div>
+            <p class="mt-2 text-xl font-bold">{s.t}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Featured -->
+    <section class="max-w-6xl mx-auto px-5 py-10">
+      <h2 class="display text-5xl font-extrabold">This week's drops</h2>
+      <div class="mt-8 grid sm:grid-cols-3 gap-6">
+        {featured.map((s) => (
+          <div class="rounded-3xl overflow-hidden" style={`background:${s.bg}`}>
+            <img src={s.img} class="w-full object-cover" style="aspect-ratio:1" />
+            <div class="p-5 flex items-center justify-between">
+              <span class="display text-xl font-bold">{s.name}</span>
+              <span class="rounded-full px-4 py-1.5 text-sm font-bold" style="background:#241f1b;color:#fbf7f0">Shop</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="max-w-6xl mx-auto px-5 py-10">
+      <div class="grid sm:grid-cols-3 gap-5">
+        {[["Fits perfectly and washes brilliantly.","— Sam & Waffle"],["The prints are unreal. Obsessed.","— Dee & Mochi"],["My shy rescue struts now. Magic.","— Alex & Pip"]].map((r) => (
+          <div class="rounded-3xl p-6" style="background:#fff;border:1px solid #f0e7d8">
+            <p style="color:#e0a43b" class="font-bold">★★★★★</p>
+            <p class="mt-2 font-medium text-lg leading-snug">{r[0]}</p>
+            <p class="mt-3 text-sm font-bold" style="color:#5b5247">{r[1]}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="max-w-6xl mx-auto px-5 pb-20 pt-6">
+      <div class="rounded-[2.5rem] px-8 py-16 text-center" style="background:#7c8b6f;color:#fbf7f0">
+        <h2 class="display text-5xl font-extrabold">Let's get tails wagging</h2>
+        <p class="mt-3 font-medium" style="color:#fbf7f0dd">Find your dog's size and treat them to something handmade.</p>
+        <span class="mt-7 inline-block rounded-full px-8 py-4 font-bold" style="background:#fbf7f0;color:#5b6a50">Shop the collection</span>
+      </div>
+    </section>
+  </body>
+</html>
