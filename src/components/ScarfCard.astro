@@ -8,10 +8,7 @@ const { scarf } = Astro.props;
 const href = `/scarves/${scarf.id}`;
 ---
 
-<a
-  href={href}
-  class="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-cream-deep hover:shadow-md transition-shadow"
->
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-cream-deep transition-shadow hover:shadow-md">
   <div class="relative aspect-square overflow-hidden bg-cream-deep">
     <img
       src={scarf.image}
@@ -28,19 +25,32 @@ const href = `/scarves/${scarf.id}`;
         Sold out
       </span>
     )}
+
+    <button
+      type="button"
+      data-fav-toggle
+      data-id={scarf.id}
+      aria-label="Save to favourites"
+      aria-pressed="false"
+      class="absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full bg-cream/90 text-ink-soft shadow-sm transition-colors hover:text-terracotta"
+    >
+      <svg data-fav-icon width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54z" />
+      </svg>
+    </button>
   </div>
 
   <div class="flex flex-1 flex-col p-5">
-    <h3 class="font-display text-xl font-semibold">{scarf.name}</h3>
-    {scarf.color && (
-      <p class="mt-1 text-sm text-ink-soft">{scarf.color}</p>
-    )}
+    <a href={href} class="before:absolute before:inset-0 before:content-['']">
+      <h3 class="font-display text-xl font-semibold">{scarf.name}</h3>
+    </a>
+    {scarf.color && <p class="mt-1 text-sm text-ink-soft">{scarf.color}</p>}
     {scarf.description && (
-      <p class="mt-3 text-sm text-ink-soft leading-relaxed line-clamp-2">{scarf.description}</p>
+      <p class="mt-3 line-clamp-2 text-sm leading-relaxed text-ink-soft">{scarf.description}</p>
     )}
 
-    <span class="mt-5 inline-flex items-center justify-center rounded-full bg-terracotta px-4 py-2.5 text-sm font-semibold text-cream group-hover:bg-terracotta-dark transition-colors">
+    <span class="mt-5 inline-flex items-center justify-center rounded-full bg-terracotta px-4 py-2.5 text-sm font-semibold text-cream transition-colors group-hover:bg-terracotta-dark">
       View details
     </span>
   </div>
-</a>
+</article>

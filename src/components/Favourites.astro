@@ -1,0 +1,49 @@
+---
+// Global favourites logic: toggles heart buttons, updates the header counter.
+// Favourites are stored per-browser in localStorage (no account needed).
+---
+
+<script>
+  const KEY = "bb-favs";
+  const read = () => {
+    try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch { return []; }
+  };
+  const write = (favs) => {
+    localStorage.setItem(KEY, JSON.stringify(favs));
+    sync();
+    window.dispatchEvent(new CustomEvent("favs:changed"));
+  };
+
+  function sync() {
+    const favs = read();
+    document.querySelectorAll("[data-fav-count]").forEach((el) => {
+      el.textContent = String(favs.length);
+      el.classList.toggle("hidden", favs.length === 0);
+    });
+    document.querySelectorAll("[data-fav-toggle]").forEach((btn) => {
+      const on = favs.includes(btn.dataset.id);
+      btn.classList.toggle("text-terracotta", on);
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+      const icon = btn.querySelector("[data-fav-icon]");
+      if (icon) icon.setAttribute("fill", on ? "currentColor" : "none");
+      const label = btn.querySelector("[data-fav-label]");
+      if (label) label.textContent = on ? "Saved" : "Save to favourites";
+    });
+  }
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-fav-toggle]");
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const favs = read();
+    const id = btn.dataset.id;
+    const i = favs.indexOf(id);
+    if (i >= 0) favs.splice(i, 1);
+    else favs.push(id);
+    write(favs);
+  });
+
+  window.addEventListener("pageshow", sync);
+  sync();
+</script>
